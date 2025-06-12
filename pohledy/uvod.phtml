@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení - Pokémon Gamba</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            color: #666;
+            margin: 10px 0 0 0;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .alert-error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .alert-success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .back-link a:hover {
+            color: #ff6b6b;
+        }
+        
+        .form-container {
+            display: none;
+        }
+        
+        .form-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>🎲</h1>
+            <p>Pokémon Gamba</p>
+        </div>
+        
+        <?php if (!empty($chyba)): ?>
+            <div class="alert alert-error"><?= htmlspecialchars($chyba) ?></div>
+        <?php endif; ?>
+        
+        <?php if (!empty($uspech)): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($uspech) ?></div>
+        <?php endif; ?>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('login')">Přihlášení</button>
+            <button class="tab" onclick="showTab('register')">Registrace</button>
+        </div>
+        
+        <!-- Přihlášení -->
+        <div id="login-form" class="form-container active">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="uzivatelskejmeno">Uživatelské jméno:</label>
+                    <input type="text" id="uzivatelskejmeno" name="uzivatelskejmeno" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="heslo">Heslo:</label>
+                    <input type="password" id="heslo" name="heslo" required>
+                </div>
+                
+                <button type="submit" name="prihlasit" class="btn">🚀 Přihlásit se</button>
+            </form>
+        </div>
+        
+        <!-- Registrace -->
+        <div id="register-form" class="form-container">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="reg_uzivatelskejmeno">Uživatelské jméno:</label>
+                    <input type="text" id="reg_uzivatelskejmeno" name="reg_uzivatelskejmeno" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg_heslo">Heslo:</label>
+                    <input type="password" id="reg_heslo" name="reg_heslo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg_heslo2">Potvrzení hesla:</label>
+                    <input type="password" id="reg_heslo2" name="reg_heslo2" required>
+                </div>
+                
+                <button type="submit" name="registrovat" class="btn">📝 Registrovat se</button>
+            </form>
+        </div>
+        
+        <div class="back-link">
+            <a href="/uvod">← Zpět na úvod</a>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Skryj všechny formy
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+            
+            // Skryj všechny taby
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Zobraz vybranou formu a tab
+            document.getElementById(tabName + '-form').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* Globální nastavení */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+}
+
+/* Hlavní nadpis */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-top: 20px;
+    font-size: 36px;
+}
+
+/* Styl pro tlačítka */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+button p {
+    margin: 0;
+}
+
+/* Input pole pro Pokémony */
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-right: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #4CAF50;
+}
+
+/* Div pro zobrazení informací o Pokémonovi */
+#pokemonInfo {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#pokemonInfo h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+}
+
+#pokemonInfo > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#pokemonInfo > div img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#pokemonInfo div p {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+#pokemonInfo div strong {
+    color: #4CAF50;
+}
+
+/* Evoluce Pokémonů */
+#pokemonInfo > div > div {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#pokemonInfo > div > div p {
+    font-size: 18px;
+}
+
+#pokemonInfo div div img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+#pokemonInfo div div p {
+    text-align: center;
+}
+
+/* Přidání šipek mezi evolucemi */
+#pokemonInfo p {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+}
