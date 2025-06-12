@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlášení - Pokémon Gamba</title>
+    <link rel="stylesheet" href="pohledy/uvod.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <h1>🎲</h1>
+            <p>Pokémon Gamba</p>
+        </div>
+        
+        <?php if (!empty($chyba)): ?>
+            <div class="alert alert-error"><?= htmlspecialchars($chyba) ?></div>
+        <?php endif; ?>
+        
+        <?php if (!empty($uspech)): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($uspech) ?></div>
+        <?php endif; ?>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('login')">Přihlášení</button>
+            <button class="tab" onclick="showTab('register')">Registrace</button>
+        </div>
+        
+        <!-- Přihlášení -->
+        <div id="login-form" class="form-container active">
+            <form action = 'login' method="POST">
+                <div class="form-group">
+                    <label for="uzivatelskejmeno">Uživatelské jméno:</label>
+                    <input type="text" id="uzivatelskejmeno" name="uzivatelskejmeno" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="heslo">Heslo:</label>
+                    <input type="password" id="heslo" name="heslo" required>
+                </div>
+                
+                <button type="submit" name="prihlasit" class="btn">🚀 Přihlásit se</button>
+            </form>
+        </div>
+        
+        <!-- Registrace -->
+        <div id="register-form" class="form-container">
+            <form action = 'login' method="POST">
+                <div class="form-group">
+                    <label for="reg_uzivatelskejmeno">Uživatelské jméno:</label>
+                    <input type="text" id="reg_uzivatelskejmeno" name="reg_uzivatelskejmeno" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg_heslo">Heslo:</label>
+                    <input type="password" id="reg_heslo" name="reg_heslo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg_heslo2">Potvrzení hesla:</label>
+                    <input type="password" id="reg_heslo2" name="reg_heslo2" required>
+                </div>
+                
+                <button type="submit" name="registrovat" class="btn">📝 Registrovat se</button>
+            </form>
+        </div>
+        
+        <div class="back-link">
+            <a href="/uvod">← Zpět na úvod</a>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Skryj všechny formy
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+            
+            // Skryj všechny taby
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Zobraz vybranou formu a tab
+            document.getElementById(tabName + '-form').classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

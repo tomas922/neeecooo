@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pohledy/oblpokemon.css">
+    <title>lod</title>
+</head>
+<body>
+    <h1>Pokémon ffInfo</h1>
+
+    
+    <button>
+        <p>buon</p>
+    </button>
+
+    <h2>Seznam Pokémonusů:</h2>
+<div id="pokemonInfo">
+    <?php foreach ($pokemonList as $pokemon): ?>
+
+        <div style="margin-bottom: 20px;">
+            <a href="dinosaurus?id=<?php echo urlencode($pokemon['pokemon_jmeno']); ?>">
+                <h3><?php echo ucfirst($pokemon['pokemon_jmeno']); ?></h3>
+                <img src="https://img.pokemondb.net/sprites/home/normal/<?php echo $pokemon['pokemon_jmeno']; ?>.png" 
+                     alt="<?php echo $pokemon['pokemon_jmeno']; ?>" 
+                     style="width:100px;">
+            </a>
+        </div>
+
+    <?php endforeach; ?>
+</div>
+
+<div id="pokemonDetail"></div>
+
+<script>
+    let pokemoni = <?php echo json_encode($pokemonList); ?>; // Seznam Pokémonů z PHP do JS
+</script>
+</body>
+</html>
